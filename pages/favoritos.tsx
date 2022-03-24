@@ -1,0 +1,30 @@
+import {api} from './services/api';
+import {useState, useEffect} from 'react';
+import Header from  '../src/components/Header/index';
+
+interface DataStorage{
+id: number;
+nome: string;
+sinopse: string;
+foto: string;
+}
+
+export default function FavoritePag(){
+    const [dataStorage, setDataStorage] = useState<DataStorage[]>([])
+    useEffect(()=>{
+         const getLocalData = JSON.parse(localStorage.getItem('movies') || '')
+         setDataStorage(getLocalData);
+    }, [])
+
+    return (
+        <>
+        <Header/>
+        {dataStorage.map((item)=> {
+            return <div key={item.id}>
+            <span>{item.nome}</span>
+            </div>
+        })}
+
+        </>
+    )
+}

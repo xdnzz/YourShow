@@ -1,6 +1,5 @@
 import * as H from './style';
 import Link from 'next/link';
-import { FaSearch } from "react-icons/fa";
 
 export default function Header(){
     return (
@@ -10,11 +9,9 @@ export default function Header(){
                 <span>Your show</span>
                 <input 
                 type="text" 
-                value="" 
                 placeholder={'Looking for something?' }
                 />
-
-                <span><Link href="#">About us</Link></span>
+                <span><Link href="/favoritos">Favorites</Link></span>
             </section>
         </H.Header>
         </>
