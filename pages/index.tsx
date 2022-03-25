@@ -22,11 +22,16 @@ interface dataResponseItem {
 }
 
 
+
+
 const Home: NextPage = () => {
 
   const [movieData, setMovieData]=useState<dataResponse[]>([]);
   
   const [movieSingleData, setMovieSingleData]=useState<dataResponseItem[]>([]);
+
+  const [movies, setMovies]=useState<string>();
+
 
   useEffect(()=>{
     async function reqData(){
@@ -42,7 +47,6 @@ const Home: NextPage = () => {
     const conv = id.toString();
     const getResultData = await api.get(conv);
     setMovieSingleData([getResultData.data]);
-    console.log(movieSingleData);
   }
 
   function resetDataMovie(){
@@ -50,9 +54,9 @@ const Home: NextPage = () => {
   }
 
   function saveMovie(id: number){
-    const getItemData = localStorage.setItem('movies', JSON.stringify(movieSingleData));
+    const getItemData:any = localStorage.setItem('movies', JSON.stringify(movieSingleData));
     alert('Filme salvo com sucesso! Acesse a página de favoritos.');
-  }
+    }
   return (
     <>
    <Header/>
