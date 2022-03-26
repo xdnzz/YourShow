@@ -5,6 +5,7 @@ import {useState, useEffect} from 'react';
 import {api} from './services/api';
 import * as MC from '../styles/style';
 import { FaTimes , FaStar} from 'react-icons/fa';
+import { AxiosResponse } from 'axios';
 
 interface dataResponse { 
     id: number;
@@ -30,7 +31,7 @@ const Home: NextPage = () => {
   
   const [movieSingleData, setMovieSingleData]=useState<dataResponseItem[]>([]);
 
-  const [movies, setMovies]=useState<string>();
+  const [movies, setMovies]=useState<any>([]);
 
 
   useEffect(()=>{
@@ -54,9 +55,18 @@ const Home: NextPage = () => {
   }
 
   function saveMovie(id: number){
-    const getItemData:any = localStorage.setItem('movies', JSON.stringify(movieSingleData));
-    alert('Filme salvo com sucesso! Acesse a página de favoritos.');
+    const checkDataExists = movies.some((item:any)=> item.id === id)
+    if(checkDataExists) {
+      alert('Você já salvou este item');
+      return;
     }
+    api.get(id.toString()).then((res:AxiosResponse)=>setMovies([...movies, res.data]))
+    alert('Item salvo com sucesso!')
+    }
+
+
+
+
   return (
     <>
    <Header/>
@@ -96,10 +106,10 @@ const Home: NextPage = () => {
                               
                     </MC.Container>
           })}
-          
+          {movies.map((e:any) => e.nome)}
         </MC.DisplayDataMvoe>
     </MC.ContainerMain>
-
+    
 
 
     </>
