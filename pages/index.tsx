@@ -54,18 +54,22 @@ const Home: NextPage = () => {
     setMovieSingleData([]);
   }
 
-  function saveMovie(id: number){
+  async function saveMovie(id: number){
+
     const checkDataExists = movies.some((item:any)=> item.id === id)
     if(checkDataExists) {
       alert('Você já salvou este item');
+      console.log(movies)
       return;
     }
-    api.get(id.toString()).then((res:AxiosResponse)=>setMovies([...movies, res.data]))
+    const getResponse = await api.get(id.toString()).then((res:AxiosResponse)=>setMovies([...movies, res.data]))
     alert('Item salvo com sucesso!')
-    }
+    // localStorage.setItem('movies', JSON.stringify(movies))
+  }
 
-
-
+  function salvarLocal(){
+    localStorage.setItem('movies', JSON.stringify(movies))
+  }
 
   return (
     <>
@@ -106,7 +110,7 @@ const Home: NextPage = () => {
                               
                     </MC.Container>
           })}
-          {movies.map((e:any) => e.nome)}
+          <button onClick={salvarLocal}>Salvar no local Storage pra testar</button>
         </MC.DisplayDataMvoe>
     </MC.ContainerMain>
     
