@@ -16,12 +16,16 @@ export default function FavoritePag(){
          setDataStorage(getLocalData);
     }, [])
 
+    function removeFavorite(item:number){
+
+    }
     return (
         <>
         <Header/>
         {dataStorage.map((item)=> {
             return <div key={item.id}>
             <span>{item.nome}</span>
+            <a onClick={()=>removeFavorite(item.id)}>Remover favorito</a>
             </div>
         })}
 
