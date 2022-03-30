@@ -19,6 +19,7 @@ export default function FavoritePag(){
     function removeFavorite(item:number){
     const filtrar = dataStorage.filter((i) => i.id !== item)
     setDataStorage(filtrar);
+    localStorage.setItem('movies', JSON.stringify(filtrar));
     }
     return (
         <>
