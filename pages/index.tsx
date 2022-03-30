@@ -6,6 +6,8 @@ import {api} from './services/api';
 import * as MC from '../styles/style';
 import { FaTimes , FaStar} from 'react-icons/fa';
 import { AxiosResponse } from 'axios';
+import useLocalStorage from '../src/hooks/useLocalStorage';
+import Link from 'next/link'; 
 
 interface dataResponse { 
     id: number;
@@ -31,7 +33,7 @@ const Home: NextPage = () => {
   
   const [movieSingleData, setMovieSingleData]=useState<dataResponseItem[]>([]);
 
-  const [movies, setMovies]=useState<any>([]);
+  const [movies, setMovies]=useLocalStorage<any>('movies',[]);
 
 
   useEffect(()=>{
@@ -67,15 +69,15 @@ const Home: NextPage = () => {
     // localStorage.setItem('movies', JSON.stringify(movies))
   }
 
-  function salvarLocal(){
-    localStorage.setItem('movies', JSON.stringify(movies))
-  }
+ 
 
   return (
     <>
    <Header/>
+   <Link href={'/filmes/'}>Favorites</Link>
       <MC.ContainerMain>
         <div>
+        <span></span>
         {movieData.map((m)=> {
           return <MC.Container key={m.id} onClick={()=>openSiteIdMovie(m.id)}>
                         <CardMovie
@@ -107,10 +109,12 @@ const Home: NextPage = () => {
                               />
                               <button onClick={()=>saveMovie(sm.id)}><FaStar color={'#fff'}/></button>
                               <button  onClick={resetDataMovie}><FaTimes color={'#fff'}/></button>
+                             <Link href={`/filmes/${sm.id}`}>
+                               oi
+                             </Link>
                               
                     </MC.Container>
           })}
-          <button onClick={salvarLocal}>Salvar no local Storage pra testar</button>
         </MC.DisplayDataMvoe>
     </MC.ContainerMain>
     
