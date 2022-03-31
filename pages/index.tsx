@@ -67,9 +67,6 @@ const Home: NextPage = () => {
     // localStorage.setItem('movies', JSON.stringify(movies))
   }
 
-  function salvarLocal(){
-    localStorage.setItem('movies', JSON.stringify(movies))
-  }
 
   return (
     <>
@@ -110,7 +107,6 @@ const Home: NextPage = () => {
                               
                     </MC.Container>
           })}
-          <button onClick={salvarLocal}>Salvar no local Storage pra testar</button>
         </MC.DisplayDataMvoe>
     </MC.ContainerMain>
     
