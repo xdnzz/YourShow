@@ -24,6 +24,7 @@ button {
     font-size: 30px;
     margin: 10px 426px 0px 0px;
     z-index: 9999;
+    cursor: not-allowed;
 }
 `;
 

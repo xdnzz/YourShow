@@ -4,7 +4,7 @@ import Header from '../src/components/Header/index';
 import {useState, useEffect} from 'react';
 import {api} from './services/api';
 import * as MC from '../styles/style';
-import { FaTimes , FaStar} from 'react-icons/fa';
+import { FaTimes , FaRegEye, FaStar} from 'react-icons/fa';
 import { AxiosResponse } from 'axios';
 import useLocalStorage from '../src/hooks/useLocalStorage';
 import Link from 'next/link'; 
@@ -73,11 +73,9 @@ const Home: NextPage = () => {
 
   return (
     <>
-   <Header/>
-   <Link href={'/filmes/'}>Favorites</Link>
+    <Header/>
       <MC.ContainerMain>
         <div>
-        <span></span>
         {movieData.map((m)=> {
           return <MC.Container key={m.id} onClick={()=>openSiteIdMovie(m.id)}>
                         <CardMovie
@@ -99,7 +97,8 @@ const Home: NextPage = () => {
 
           </MC.DescriptionShow> 
           : movieSingleData.map((sm:dataResponseItem)=> {
-            return <MC.Container key={sm.id}>
+            return <Link href={`/filmes/${sm.id}`} key={sm.id}> 
+                        <MC.Container >
                                 <CardMovie
                                 key={sm.id}
                                 id={sm.id}
@@ -108,12 +107,9 @@ const Home: NextPage = () => {
                                 foto={sm.foto}
                               />
                               <button onClick={()=>saveMovie(sm.id)}><FaStar color={'#fff'}/></button>
-                              <button  onClick={resetDataMovie}><FaTimes color={'#fff'}/></button>
-                             <Link href={`/filmes/${sm.id}`}>
-                               oi
-                             </Link>
-                              
+                              <button  onClick={resetDataMovie}><FaTimes color={'#fff'}/></button>                             
                     </MC.Container>
+                    </Link>
           })}
         </MC.DisplayDataMvoe>
     </MC.ContainerMain>

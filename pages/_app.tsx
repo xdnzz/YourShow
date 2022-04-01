@@ -6,7 +6,8 @@ import Header from '../src/components/Header/index';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <>
-  <Component {...pageProps} /></>
+            <Component {...pageProps} />
+         </>
 }
 
 export default MyApp

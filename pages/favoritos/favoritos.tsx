@@ -1,7 +1,6 @@
-import {api} from './services/api';
 import {useState, useEffect} from 'react';
-import Header from  '../src/components/Header/index';
-// import useLocalStorage from '../src/components/useLocalStorage/'
+import Header from  '../../src/components/Header/index';
+import * as FP from './style';
 
 interface DataStorage{
 id: number;
@@ -25,12 +24,14 @@ export default function FavoritePag(){
     return (
         <>
         <Header/>
-        {dataStorage.map((item)=> {
-            return <div key={item.id}>
-            <span>{item.nome}</span>
-            <a onClick={()=>removeFavorite(item.id)}>Remover favorito</a>
+            <div>
+                {dataStorage.map((item)=> {
+                return <div key={item.id}>
+                <span>{item.nome}</span>
+                <a onClick={()=>removeFavorite(item.id)}>Remover favorito</a>
+                </div>
+            })}
             </div>
-        })}
 
         </>
     )

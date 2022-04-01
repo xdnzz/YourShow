@@ -6,12 +6,12 @@ export default function Header(){
         <>
         <H.Header>
             <section>
-                <span>Your show</span>
+                <span><Link href="/">Your show</Link></span>
                 <input 
                 type="text" 
                 placeholder={'Looking for something?' }
                 />
-                <span><Link href="/favoritos">Favorites</Link></span>
+                <span><Link href="/favoritos/favoritos">Favorites</Link></span>
             </section>
         </H.Header>
         </>
